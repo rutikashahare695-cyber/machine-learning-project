@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction System</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; background: #e8f4fd; border-left: 5px solid #007bff; border-radius: 4px; color: #004085; font-size: 18px; text-align: center; font-weight: bold; }
+        .error { margin-top: 20px; padding: 10px; background: #f8d7da; color: #721c24; border-radius: 4px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏡 House Price Predictor</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>Area (sqft):</label>
+                <input type="number" name="area" required placeholder="e.g. 2000">
+            </div>
+            <div class="form-group">
+                <label>Bedrooms:</label>
+                <input type="number" name="bedrooms" required placeholder="e.g. 3">
+            </div>
+            <div class="form-group">
+                <label>Bathrooms:</label>
+                <input type="number" name="bathrooms" required placeholder="e.g. 2">
+            </div>
+            <div class="form-group">
+                <label>Age of Property (Years):</label>
+                <input type="number" name="age" required placeholder="e.g. 5">
+            </div>
+            <div class="form-group">
+                <label>Location:</label>
+                <select name="location">
+                    <option value="City Center">City Center</option>
+                    <option value="Suburb">Suburb</option>
+                    <option value="Rural">Rural</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Property Type:</label>
+                <select name="property_type">
+                    <option value="Apartment">Apartment</option>
+                    <option value="House">House</option>
+                    <option value="Villa">Villa</option>
+                </select>
+            </div>
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                Estimated Price: <br>{{ prediction }}
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
